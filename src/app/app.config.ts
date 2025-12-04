@@ -1,11 +1,12 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
 import { HeroRepositoryPort } from './features/heroes/domain/ports/hero.repository.port';
 import { HeroApiAdapter } from './features/heroes/infrastructure/adapters/hero-api.adapter';
+import { httpErrorInterceptor } from './core/interceptors/http-error.interceptor';
 
 /**
  * Configuración principal de la aplicación Angular
@@ -23,7 +24,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(
+      withInterceptorsFromDi(),
+      withInterceptors([httpErrorInterceptor])
+    ),
     provideAnimations(),
     // Inyección de dependencias para arquitectura hexagonal
     {
