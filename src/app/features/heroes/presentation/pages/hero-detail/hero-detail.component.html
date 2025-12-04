@@ -1,0 +1,182 @@
+<div class="hero-detail-container">
+  <!-- Loading State -->
+  <app-loading-spinner *ngIf="isLoading()" />
+
+  <!-- Error State -->
+  <app-error-message 
+    *ngIf="hasError() && !isLoading()"
+    [message]="errorMessage() || 'Error desconocido'"
+    actionText="Reintentar"
+    [onAction]="retry.bind(this)"
+  />
+
+  <!-- Hero Detail -->
+  <div *ngIf="!isLoading() && !hasError() && hero()" class="hero-detail-content">
+    <button mat-button (click)="goBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Volver a la lista
+    </button>
+
+    <div class="hero-detail-grid">
+      <!-- Hero Image -->
+      <div class="hero-image-section">
+        <img 
+          [src]="getHeroImage()" 
+          [alt]="hero()!.name"
+          class="hero-image"
+          (error)="$event.target.src='assets/default-hero.png'"
+        />
+      </div>
+
+      <!-- Hero Info -->
+      <div class="hero-info-section">
+        <h1 class="hero-name">{{ hero()!.biography.fullName || hero()!.name }}</h1>
+        <p class="hero-alias" *ngIf="hero()!.biography.aliases && hero()!.biography.aliases.length">
+          También conocido como: {{ hero()!.biography.aliases.join(', ') }}
+        </p>
+
+        <!-- Expansion Panels -->
+        <mat-accordion class="info-accordion" displayMode="flat" multi="false">
+          <!-- Power Stats -->
+          <mat-expansion-panel *ngIf="hero()!.powerstats" class="info-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="panel-icon">fitness_center</mat-icon>
+                Estadísticas de Poder
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-label">Inteligencia</span>
+                <mat-chip [color]="getStatColor(hero()!.powerstats.intelligence)">
+                  {{ getStatValue(hero()!.powerstats.intelligence) }}
+                </mat-chip>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Fuerza</span>
+                <mat-chip [color]="getStatColor(hero()!.powerstats.strength)">
+                  {{ getStatValue(hero()!.powerstats.strength) }}
+                </mat-chip>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Velocidad</span>
+                <mat-chip [color]="getStatColor(hero()!.powerstats.speed)">
+                  {{ getStatValue(hero()!.powerstats.speed) }}
+                </mat-chip>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Durabilidad</span>
+                <mat-chip [color]="getStatColor(hero()!.powerstats.durability)">
+                  {{ getStatValue(hero()!.powerstats.durability) }}
+                </mat-chip>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Poder</span>
+                <mat-chip [color]="getStatColor(hero()!.powerstats.power)">
+                  {{ getStatValue(hero()!.powerstats.power) }}
+                </mat-chip>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Combate</span>
+                <mat-chip [color]="getStatColor(hero()!.powerstats.combat)">
+                  {{ getStatValue(hero()!.powerstats.combat) }}
+                </mat-chip>
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <!-- Appearance -->
+          <mat-expansion-panel *ngIf="hero()!.appearance" class="info-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="panel-icon">face</mat-icon>
+                Apariencia
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="info-grid">
+              <div class="info-item">
+                <strong>Género:</strong> {{ hero()!.appearance.gender || 'Desconocido' }}
+              </div>
+              <div class="info-item">
+                <strong>Raza:</strong> {{ hero()!.appearance.race || 'Desconocida' }}
+              </div>
+              <div class="info-item">
+                <strong>Altura:</strong> {{ (hero()!.appearance.height && hero()!.appearance.height.length > 0) ? hero()!.appearance.height.join(' ') : 'Desconocida' }}
+              </div>
+              <div class="info-item">
+                <strong>Peso:</strong> {{ (hero()!.appearance.weight && hero()!.appearance.weight.length > 0) ? hero()!.appearance.weight.join(' ') : 'Desconocido' }}
+              </div>
+              <div class="info-item">
+                <strong>Color de ojos:</strong> {{ hero()!.appearance.eyeColor || 'Desconocido' }}
+              </div>
+              <div class="info-item">
+                <strong>Color de cabello:</strong> {{ hero()!.appearance.hairColor || 'Desconocido' }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <!-- Biography -->
+          <mat-expansion-panel *ngIf="hero()!.biography" class="info-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="panel-icon">book</mat-icon>
+                Biografía
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="info-grid">
+              <div class="info-item">
+                <strong>Lugar de nacimiento:</strong> {{ hero()!.biography.placeOfBirth || 'Desconocido' }}
+              </div>
+              <div class="info-item">
+                <strong>Primera aparición:</strong> {{ hero()!.biography.firstAppearance || 'Desconocida' }}
+              </div>
+              <div class="info-item">
+                <strong>Editorial:</strong> {{ hero()!.biography.publisher || 'Desconocida' }}
+              </div>
+              <div class="info-item">
+                <strong>Alineación:</strong> {{ hero()!.biography.alignment || 'Desconocida' }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <!-- Work -->
+          <mat-expansion-panel *ngIf="hero()!.work" class="info-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="panel-icon">work</mat-icon>
+                Trabajo
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="info-grid">
+              <div class="info-item">
+                <strong>Ocupación:</strong> {{ hero()!.work.occupation || 'Desconocida' }}
+              </div>
+              <div class="info-item">
+                <strong>Base:</strong> {{ hero()!.work.base || 'Desconocida' }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <!-- Connections -->
+          <mat-expansion-panel *ngIf="hero()!.connections" class="info-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="panel-icon">people</mat-icon>
+                Conexiones
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="info-grid">
+              <div class="info-item">
+                <strong>Afiliación de grupo:</strong> {{ hero()!.connections.groupAffiliation || 'Ninguna' }}
+              </div>
+              <div class="info-item">
+                <strong>Familiares:</strong> {{ hero()!.connections.relatives || 'Ninguno' }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>
+
