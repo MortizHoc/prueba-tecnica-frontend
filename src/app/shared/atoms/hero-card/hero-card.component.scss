@@ -1,0 +1,257 @@
+/**
+ * Estilos del componente HeroCard
+ * 
+ * @description Estilos mejorados para la tarjeta de superhéroe con diseño moderno,
+ * mejor UX/UI y completamente responsive
+ */
+
+.hero-card {
+  cursor: pointer;
+  transition: all var(--transition-base);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  
+  // Efecto hover mejorado
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    
+    .hero-card-image {
+      transform: scale(1.1);
+    }
+    
+    .hero-card-title {
+      color: var(--primary-color);
+    }
+  }
+  
+  // Estado activo/focus
+  &:active {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+  }
+  
+  // Indicador de carga para imagen
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  &:hover::before {
+    transform: translateX(100%);
+  }
+}
+
+.hero-card-image-container {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-color) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  // Overlay sutil para mejor legibilidad del texto si se agrega
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+  
+  .hero-card:hover &::after {
+    opacity: 1;
+  }
+}
+
+.hero-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+  background: var(--bg-secondary);
+  
+  // Placeholder mientras carga
+  &[src=""],
+  &:not([src]) {
+    opacity: 0.5;
+  }
+}
+
+.hero-card-content {
+  padding: var(--spacing-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.hero-card-title {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.3;
+  transition: color var(--transition-fast);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-card-publisher {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
+}
+
+.stat-chip {
+  font-size: 0.75rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  
+  &:hover {
+    background-color: var(--primary-light);
+    color: var(--text-on-primary);
+    transform: scale(1.05);
+  }
+
+  strong {
+    margin-right: var(--spacing-xs);
+    font-weight: 600;
+  }
+}
+
+// Responsive - Mobile First
+@media (max-width: 576px) {
+  .hero-card-image-container {
+    height: 220px;
+  }
+
+  .hero-card-content {
+    padding: var(--spacing-md);
+    gap: var(--spacing-xs);
+  }
+
+  .hero-card-title {
+    font-size: 1.125rem;
+  }
+  
+  .hero-card-publisher {
+    font-size: 0.8125rem;
+  }
+  
+  .stat-chip {
+    font-size: 0.6875rem;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  .hero-card {
+    &:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .hero-card-image-container {
+    height: 240px;
+  }
+  
+  .hero-card-content {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-card-image-container {
+    height: 320px;
+  }
+}
+
+// Mejoras de accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  .hero-card,
+  .hero-card-image,
+  .stat-chip {
+    transition: none;
+  }
+  
+  .hero-card:hover {
+    transform: none;
+  }
+  
+  .hero-card-image {
+    transform: none !important;
+  }
+}
+
+// Modo oscuro (preparado para futuro)
+@media (prefers-color-scheme: dark) {
+  .hero-card {
+    background: #1e1e1e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hero-card-title {
+    color: #ffffff;
+  }
+  
+  .hero-card-publisher {
+    color: #b0b0b0;
+  }
+  
+  .stat-chip {
+    background-color: #2d2d2d;
+    color: #ffffff;
+  }
+}
+

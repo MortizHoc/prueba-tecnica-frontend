@@ -1,0 +1,23 @@
+<mat-card class="hero-card fade-in" [routerLink]="['/heroes', hero.id]">
+  <div class="hero-card-image-container">
+    <img 
+      [src]="getHeroImage()" 
+      [alt]="hero.name"
+      class="hero-card-image"
+      (error)="$event.target.src='assets/default-hero.png'"
+    />
+  </div>
+  <mat-card-content class="hero-card-content">
+    <h3 class="hero-card-title">{{ getHeroName() }}</h3>
+    <p class="hero-card-publisher">{{ getPublisher() }}</p>
+    <div class="hero-card-stats" *ngIf="hero.powerstats">
+      <mat-chip class="stat-chip">
+        <strong>Inteligencia:</strong> {{ hero.powerstats.intelligence || 0 }}
+      </mat-chip>
+      <mat-chip class="stat-chip">
+        <strong>Fuerza:</strong> {{ hero.powerstats.strength || 0 }}
+      </mat-chip>
+    </div>
+  </mat-card-content>
+</mat-card>
+
