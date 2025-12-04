@@ -10,7 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HeroService } from '../../../application/services/hero.service';
 import { Hero } from '../../../domain/models/hero.model';
-import { LoadingSpinnerComponent } from '../../../../../shared/molecules/loading-spinner/loading-spinner.component';
+import { HeroDetailSkeletonComponent } from '../../../../../shared/molecules/hero-detail-skeleton/hero-detail-skeleton.component';
 import { ErrorMessageComponent } from '../../../../../shared/molecules/error-message/error-message.component';
 
 /**
@@ -35,7 +35,7 @@ import { ErrorMessageComponent } from '../../../../../shared/molecules/error-mes
     MatDividerModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-    LoadingSpinnerComponent,
+    HeroDetailSkeletonComponent,
     ErrorMessageComponent
   ],
   templateUrl: './hero-detail.component.html',
@@ -117,17 +117,42 @@ export class HeroDetailComponent implements OnInit {
   /**
    * Obtiene el valor de una estadística de poder
    */
-  getStatValue(stat: number | undefined): number {
-    return stat || 0;
+  getStatValue(stat: number | undefined | null): number {
+    return stat ?? 0;
   }
 
   /**
    * Obtiene el color de una estadística basado en su valor
    */
-  getStatColor(value: number): string {
-    if (value >= 80) return 'success';
-    if (value >= 50) return 'accent';
+  getStatColor(value: number | undefined | null): string {
+    const numValue = value ?? 0;
+    if (numValue >= 80) return 'success';
+    if (numValue >= 50) return 'accent';
     return 'warn';
+  }
+
+  /**
+   * Obtiene los aliases del superhéroe como string
+   */
+  getAliases(): string {
+    const aliases = this.hero()?.biography?.aliases;
+    return aliases && aliases.length > 0 ? aliases.join(', ') : '';
+  }
+
+  /**
+   * Obtiene la altura del superhéroe como string
+   */
+  getHeight(): string {
+    const height = this.hero()?.appearance?.height;
+    return height && height.length > 0 ? height.join(' ') : 'Desconocida';
+  }
+
+  /**
+   * Obtiene el peso del superhéroe como string
+   */
+  getWeight(): string {
+    const weight = this.hero()?.appearance?.weight;
+    return weight && weight.length > 0 ? weight.join(' ') : 'Desconocido';
   }
 }
 

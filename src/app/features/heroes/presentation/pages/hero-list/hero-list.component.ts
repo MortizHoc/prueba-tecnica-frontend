@@ -7,8 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeroService } from '../../../application/services/hero.service';
 import { Hero, HeroesPaginatedResponse } from '../../../domain/models/hero.model';
 import { HeroCardComponent } from '../../../../../shared/atoms/hero-card/hero-card.component';
+import { HeroCardSkeletonComponent } from '../../../../../shared/atoms/hero-card-skeleton/hero-card-skeleton.component';
 import { PaginationComponent } from '../../../../../shared/molecules/pagination/pagination.component';
-import { LoadingSpinnerComponent } from '../../../../../shared/molecules/loading-spinner/loading-spinner.component';
 import { ErrorMessageComponent } from '../../../../../shared/molecules/error-message/error-message.component';
 
 /**
@@ -30,8 +30,8 @@ import { ErrorMessageComponent } from '../../../../../shared/molecules/error-mes
     MatProgressSpinnerModule,
     MatIconModule,
     HeroCardComponent,
+    HeroCardSkeletonComponent,
     PaginationComponent,
-    LoadingSpinnerComponent,
     ErrorMessageComponent
   ],
   templateUrl: './hero-list.component.html',

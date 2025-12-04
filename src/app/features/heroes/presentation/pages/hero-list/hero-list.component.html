@@ -4,9 +4,6 @@
     <p class="page-subtitle">Explora nuestra colección de superhéroes</p>
   </div>
 
-  <!-- Loading State -->
-  <app-loading-spinner *ngIf="isLoading()" />
-
   <!-- Error State -->
   <app-error-message 
     *ngIf="hasError() && !isLoading()"
@@ -16,13 +13,24 @@
   />
 
   <!-- Heroes Grid -->
-  <div *ngIf="!isLoading() && !hasError()" class="heroes-content">
+  <div *ngIf="!hasError()" class="heroes-content">
     <div class="heroes-grid">
-      <app-hero-card 
-        *ngFor="let hero of heroes()" 
-        [hero]="hero"
-        class="hero-card-item"
-      />
+      <!-- Skeleton Loaders -->
+      <ng-container *ngIf="isLoading()">
+        <app-hero-card-skeleton 
+          *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"
+          class="hero-card-item"
+        />
+      </ng-container>
+      
+      <!-- Hero Cards -->
+      <ng-container *ngIf="!isLoading()">
+        <app-hero-card 
+          *ngFor="let hero of heroes()" 
+          [hero]="hero"
+          class="hero-card-item"
+        />
+      </ng-container>
     </div>
 
     <!-- Pagination -->
