@@ -176,7 +176,7 @@ Este proyecto fue desarrollado como parte de una prueba técnica para Software C
 
 **Maikol Ortiz**  
 Documento: CC 1007193445  
-Email: [Incluir email si es necesario]
+Email: maikol.raw@gmail.com
 
 ## 📧 Contacto
 
