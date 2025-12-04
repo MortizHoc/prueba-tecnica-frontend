@@ -17,7 +17,6 @@ Para más detalles, consulta la documentación completa:
 
 - 📖 **[SETUP.md](./SETUP.md)** - Guía completa de instalación y configuración
 - 🏗️ **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Explicación detallada de la arquitectura
-- ✨ **[FEATURES.md](./FEATURES.md)** - Lista completa de características implementadas
 
 ## 🏗️ Arquitectura
 
