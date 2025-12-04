@@ -1,0 +1,115 @@
+<div class="pagination-container">
+  <!-- Información y selector en una sola línea -->
+  <div class="pagination-header">
+    <div class="pagination-info-group">
+      <span class="pagination-text">
+        Mostrando <strong>{{ getRangeText() }}</strong> de <strong>{{ totalItems }}</strong> resultados
+      </span>
+    </div>
+    <div class="pagination-actions">
+      <mat-form-field class="page-size-selector" appearance="outline">
+        <mat-label>Por página</mat-label>
+        <mat-select [value]="pageSize" (selectionChange)="onPageSizeChange($event.value)">
+          <mat-option *ngFor="let size of pageSizeOptions" [value]="size">
+            {{ size }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Controles de navegación -->
+  <div class="pagination-navigation">
+    <!-- Botón Primera página -->
+    <button 
+      mat-icon-button 
+      [disabled]="currentPage === 1"
+      (click)="goToPage(1)"
+      aria-label="Primera página"
+      class="nav-button first-page"
+      title="Primera página"
+    >
+      <mat-icon>first_page</mat-icon>
+    </button>
+
+    <!-- Botón Página anterior -->
+    <button 
+      mat-icon-button 
+      [disabled]="currentPage === 1"
+      (click)="previousPage()"
+      aria-label="Página anterior"
+      class="nav-button prev-page"
+      title="Página anterior"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <!-- Números de página -->
+    <div class="page-numbers-container">
+      <!-- Mostrar primera página si no está visible -->
+      <button
+        *ngIf="shouldShowFirstPage()"
+        mat-button
+        (click)="goToPage(1)"
+        class="page-button"
+        [class.active]="1 === currentPage"
+      >
+        1
+      </button>
+      <span *ngIf="shouldShowFirstEllipsis()" class="ellipsis">...</span>
+
+      <!-- Páginas visibles -->
+      <button
+        *ngFor="let page of getPageNumbers()"
+        mat-button
+        (click)="goToPage(page)"
+        class="page-button"
+        [class.active]="page === currentPage"
+      >
+        {{ page }}
+      </button>
+
+      <span *ngIf="shouldShowLastEllipsis()" class="ellipsis">...</span>
+
+      <!-- Mostrar última página si no está visible -->
+      <button
+        *ngIf="shouldShowLastPage()"
+        mat-button
+        (click)="goToPage(totalPages)"
+        class="page-button"
+        [class.active]="totalPages === currentPage"
+      >
+        {{ totalPages }}
+      </button>
+    </div>
+
+    <!-- Botón Página siguiente -->
+    <button 
+      mat-icon-button 
+      [disabled]="currentPage === totalPages"
+      (click)="nextPage()"
+      aria-label="Página siguiente"
+      class="nav-button next-page"
+      title="Página siguiente"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+    <!-- Botón Última página -->
+    <button 
+      mat-icon-button 
+      [disabled]="currentPage === totalPages"
+      (click)="goToPage(totalPages)"
+      aria-label="Última página"
+      class="nav-button last-page"
+      title="Última página"
+    >
+      <mat-icon>last_page</mat-icon>
+    </button>
+  </div>
+
+  <!-- Información de página actual (móvil) -->
+  <div class="pagination-mobile-info">
+    <span class="page-info-text">Página {{ currentPage }} de {{ totalPages }}</span>
+  </div>
+</div>

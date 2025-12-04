@@ -1,0 +1,97 @@
+/**
+ * Estilos del componente ErrorMessage
+ * Mejoras de UX/UI y diseño responsive
+ */
+
+.error-card {
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  max-width: 600px;
+  margin: var(--spacing-xl) auto;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-primary);
+  animation: scaleIn var(--transition-base);
+  
+  @media (max-width: 576px) {
+    padding: var(--spacing-xl) var(--spacing-md);
+    margin: var(--spacing-lg) auto;
+  }
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.error-icon {
+  font-size: 72px;
+  width: 72px;
+  height: 72px;
+  color: var(--error-color);
+  animation: pulse 2s ease-in-out infinite;
+  
+  @media (max-width: 576px) {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.error-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+}
+
+.error-message {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.error-action {
+  margin-top: var(--spacing-md);
+  min-width: 120px;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-fast);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+// Mejoras de accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  .error-card {
+    animation: none;
+  }
+  
+  .error-icon {
+    animation: none;
+  }
+  
+  .error-action {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}
