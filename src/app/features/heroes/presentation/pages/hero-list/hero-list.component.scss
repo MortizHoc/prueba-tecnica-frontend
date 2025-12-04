@@ -1,0 +1,184 @@
+/**
+ * Estilos del componente HeroList
+ * Mejoras de UX/UI y diseño responsive
+ */
+
+.hero-list-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md);
+  min-height: calc(100vh - 64px);
+}
+
+.hero-list-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+  padding: var(--spacing-xl) 0;
+  
+  // Animación de entrada
+  animation: fadeIn var(--transition-base);
+}
+
+.page-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 400;
+}
+
+.heroes-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  animation: fadeIn var(--transition-slow) 0.1s both;
+}
+
+.heroes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  
+  // Stagger animation para las tarjetas
+  .hero-card-item {
+    animation: fadeIn var(--transition-base) both;
+    
+    @for $i from 1 through 20 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.05}s;
+      }
+    }
+  }
+}
+
+.hero-card-item {
+  width: 100%;
+  transition: transform var(--transition-fast);
+  
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin: var(--spacing-xl) 0;
+  animation: fadeIn var(--transition-base);
+
+  h2 {
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+  }
+  
+  .empty-icon {
+    font-size: 80px;
+    width: 80px;
+    height: 80px;
+    color: var(--text-disabled);
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.6;
+    
+    @media (max-width: 576px) {
+      font-size: 64px;
+      width: 64px;
+      height: 64px;
+    }
+  }
+}
+
+// Responsive - Mobile First Approach
+@media (max-width: 576px) {
+  .hero-list-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .hero-list-header {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg) 0;
+  }
+
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .heroes-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .empty-state {
+    padding: var(--spacing-xl) var(--spacing-md);
+    
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .heroes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .heroes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .heroes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1201px) {
+  .heroes-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Mejoras de accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  .heroes-grid .hero-card-item {
+    animation: none;
+  }
+  
+  .hero-list-header,
+  .heroes-content,
+  .empty-state {
+    animation: none;
+  }
+}
+

@@ -1,0 +1,48 @@
+<div class="hero-list-container">
+  <div class="hero-list-header">
+    <h1 class="page-title">Superhéroes</h1>
+    <p class="page-subtitle">Explora nuestra colección de superhéroes</p>
+  </div>
+
+  <!-- Loading State -->
+  <app-loading-spinner *ngIf="isLoading()" />
+
+  <!-- Error State -->
+  <app-error-message 
+    *ngIf="hasError() && !isLoading()"
+    [message]="errorMessage() || 'Error desconocido'"
+    actionText="Reintentar"
+    [onAction]="retry.bind(this)"
+  />
+
+  <!-- Heroes Grid -->
+  <div *ngIf="!isLoading() && !hasError()" class="heroes-content">
+    <div class="heroes-grid">
+      <app-hero-card 
+        *ngFor="let hero of heroes()" 
+        [hero]="hero"
+        class="hero-card-item"
+      />
+    </div>
+
+    <!-- Pagination -->
+    <app-pagination
+      *ngIf="totalItems() > 0"
+      [currentPage]="currentPage()"
+      [totalPages]="totalPages()"
+      [pageSize]="pageSize()"
+      [totalItems]="totalItems()"
+      [pageSizeOptions]="[10, 20, 30, 50]"
+      (pageChange)="onPageChange($event)"
+      (pageSizeChange)="onPageSizeChange($event)"
+    />
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading() && !hasError() && heroes().length === 0" class="empty-state">
+    <mat-icon class="empty-icon">search_off</mat-icon>
+    <h2>No se encontraron superhéroes</h2>
+    <p>Intenta ajustar los filtros o recargar la página.</p>
+  </div>
+</div>
+
