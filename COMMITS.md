@@ -8,6 +8,9 @@ Esta guía contiene los commits organizados siguiendo las convenciones de **Conv
 
 ## 📦 Secuencia de Commits Recomendada
 
+> 🌐 **Demo en producción:** el resultado final de esta secuencia de commits puede verse desplegado en Vercel en  
+> [prueba-tecnica-frontend-vecs](https://vercel.com/mortizhocs-projects/prueba-tecnica-frontend-vecs)
+
 ### Commit 1: Configuración inicial del proyecto
 ```bash
 git add package.json package-lock.json angular.json tsconfig*.json .editorconfig .gitignore .vscode/

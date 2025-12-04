@@ -1,11 +1,143 @@
 /**
  * Estilos globales del componente principal de la aplicación
- * 
+ *
  * @author Maikol Ortiz - CC 1007193445
  */
 
 :host {
   display: block;
   min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, #ffffff 0%, #f3f8ff 40%, #e3f2fd 100%);
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(10px);
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  padding-block: var(--spacing-sm);
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-decoration: none;
+  color: var(--text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+}
+
+.app-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.app-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.app-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.app-nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    position: relative;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-full);
+    transition: color var(--transition-fast), background-color var(--transition-fast),
+      transform var(--transition-fast);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      bottom: 0;
+      height: 2px;
+      border-radius: var(--border-radius-full);
+      background: linear-gradient(90deg, var(--primary-light), var(--primary-color));
+      transform-origin: center;
+      transform: scaleX(0);
+      transition: transform var(--transition-fast);
+    }
+
+    &:hover {
+      color: var(--primary-color);
+      background-color: rgba(25, 118, 210, 0.06);
+      transform: translateY(-1px);
+    }
+
+    &.active {
+      color: var(--primary-color);
+      background-color: rgba(25, 118, 210, 0.12);
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
+.app-main {
+  flex: 1;
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .app-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .app-brand {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .app-main {
+    padding-top: var(--spacing-md);
+  }
+
+  .app-title {
+    font-size: 1rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.75rem;
+  }
 }
 

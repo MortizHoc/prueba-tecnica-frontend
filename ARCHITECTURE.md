@@ -5,6 +5,9 @@
 
 ## 📐 Principios Arquitectónicos
 
+> 🔗 **Demo en producción:** puedes ver la aplicación corriendo en Vercel en  
+> [prueba-tecnica-frontend-vecs](https://vercel.com/mortizhocs-projects/prueba-tecnica-frontend-vecs)
+
 Este proyecto implementa una arquitectura moderna y escalable combinando tres enfoques complementarios:
 
 ### 1. Arquitectura Hexagonal (Ports & Adapters)

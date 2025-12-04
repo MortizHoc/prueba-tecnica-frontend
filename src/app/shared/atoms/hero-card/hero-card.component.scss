@@ -9,6 +9,8 @@
   cursor: pointer;
   transition: all var(--transition-base);
   height: 100%;
+  width: 100%;
+  max-width: 280px;
   display: flex;
   flex-direction: column;
   border-radius: var(--border-radius-lg);
@@ -173,7 +175,7 @@
 // Responsive - Mobile First
 @media (max-width: 576px) {
   .hero-card-image-container {
-    height: 220px;
+    height: 200px;
   }
 
   .hero-card-content {
@@ -195,8 +197,10 @@
   }
   
   .hero-card {
+    margin-inline: auto;
+    
     &:hover {
-      transform: translateY(-4px) scale(1.01);
+      transform: translateY(-2px) scale(1.005);
     }
   }
 }
@@ -231,27 +235,6 @@
   
   .hero-card-image {
     transform: none !important;
-  }
-}
-
-// Modo oscuro (preparado para futuro)
-@media (prefers-color-scheme: dark) {
-  .hero-card {
-    background: #1e1e1e;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  .hero-card-title {
-    color: #ffffff;
-  }
-  
-  .hero-card-publisher {
-    color: #b0b0b0;
-  }
-  
-  .stat-chip {
-    background-color: #2d2d2d;
-    color: #ffffff;
   }
 }
 

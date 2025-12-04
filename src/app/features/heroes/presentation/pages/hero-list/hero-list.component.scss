@@ -47,7 +47,8 @@
 
 .heroes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+  justify-content: center;
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
   
@@ -152,14 +153,14 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .heroes-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(280px, 320px));
     gap: var(--spacing-lg);
   }
 }
 
 @media (min-width: 1025px) and (max-width: 1200px) {
   .heroes-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(280px, 320px));
   }
 }
 

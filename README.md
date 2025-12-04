@@ -68,6 +68,12 @@ src/app/
 └── app.config.ts                # Configuración de la aplicación
 ```
 
+## 🌐 Demo en Producción
+
+Puedes ver la aplicación desplegada en Vercel aquí:
+
+- **Demo:** [prueba-tecnica-frontend-vecs](https://vercel.com/mortizhocs-projects/prueba-tecnica-frontend-vecs)
+
 ## 🚀 Inicio Rápido
 
 ### Instalación

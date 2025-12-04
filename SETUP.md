@@ -6,6 +6,10 @@
 
 ## 📋 Prerrequisitos
 
+> 🌐 **Demo en producción:** si prefieres solo revisar el resultado sin instalar nada localmente,  
+> puedes acceder a la aplicación desplegada en Vercel:  
+> [prueba-tecnica-frontend-vecs](https://vercel.com/mortizhocs-projects/prueba-tecnica-frontend-vecs)
+
 Antes de comenzar, asegúrate de tener instalado:
 
 - **Node.js**: Versión 18 o superior

@@ -1,1 +1,34 @@
-<router-outlet />
+<div class="app-shell">
+  <header class="app-header">
+    <nav class="app-nav container-fluid">
+      <a
+        class="app-brand"
+        routerLink="/heroes"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        aria-label="Ir a la lista de superhéroes"
+      >
+        <div class="app-brand-text">
+          <span class="app-title">Superhéroes</span>
+          <span class="app-subtitle">Prueba técnica Frontend</span>
+        </div>
+      </a>
+
+      <ul class="app-nav-links" aria-label="Navegación principal">
+        <li>
+          <a
+            routerLink="/heroes"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Lista de héroes
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="app-main container-fluid">
+    <router-outlet />
+  </main>
+</div>
