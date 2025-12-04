@@ -77,11 +77,11 @@ export interface Hero {
   id: number;
   name: string;
   slug: string;
-  powerstats: PowerStats;
-  appearance: Appearance;
-  biography: Biography;
-  work: Work;
-  connections: Connections;
+  powerstats: PowerStats | null;
+  appearance: Appearance | null;
+  biography: Biography | null;
+  work: Work | null;
+  connections: Connections | null;
   images: HeroImages;
 }
 
