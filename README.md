@@ -111,6 +111,7 @@ El proyecto consume la API de Superhéroes de Software Colombia:
 - ✅ Paginación avanzada (primera/última página, elipsis)
 - ✅ Cambio de tamaño de página (10, 20, 30, 50)
 - ✅ Tarjetas modernas con efectos hover
+- ✅ Skeleton loaders para mejor UX durante la carga
 - ✅ Estados de carga y error
 - ✅ Diseño completamente responsive
 
@@ -119,7 +120,15 @@ El proyecto consume la API de Superhéroes de Software Colombia:
 - ✅ Estadísticas de poder con indicadores de color
 - ✅ Secciones: Apariencia, Biografía, Trabajo, Conexiones
 - ✅ Imagen grande del superhéroe
+- ✅ Skeleton loader durante la carga
 - ✅ Navegación de regreso
+
+### Mejoras Técnicas y Robustez
+- ✅ HTTP Interceptor para manejo global de errores
+- ✅ Validación y sanitización de datos de la API
+- ✅ Type guards para seguridad de tipos
+- ✅ Manejo robusto de errores con mensajes descriptivos
+- ✅ Validación de estructura de respuestas de la API
 
 > ✨ **Para lista completa de características**, consulta [FEATURES.md](./FEATURES.md)
 

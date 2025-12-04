@@ -140,6 +140,40 @@ git commit -m "chore: configuración final y mejoras de package.json
 - Engines especificados"
 ```
 
+### Commit 13: HTTP Interceptor y manejo global de errores
+```bash
+git add src/app/core/interceptors/
+git commit -m "feat: HTTP interceptor para manejo global de errores
+
+- Interceptor centralizado para todas las peticiones HTTP
+- Mensajes de error descriptivos por código de estado
+- Manejo de errores de cliente y servidor
+- Logging estructurado de errores"
+```
+
+### Commit 14: Skeleton loaders para mejor UX
+```bash
+git add src/app/shared/atoms/hero-card-skeleton/ src/app/shared/molecules/hero-detail-skeleton/
+git commit -m "feat: skeleton loaders para mejor experiencia de usuario
+
+- HeroCardSkeletonComponent: placeholder animado para tarjetas
+- HeroDetailSkeletonComponent: placeholder animado para detalles
+- Reemplazo de spinners por skeletons más profesionales
+- Animaciones shimmer para feedback visual"
+```
+
+### Commit 15: Validación y sanitización de datos
+```bash
+git add src/app/features/heroes/domain/validators/ src/app/features/heroes/infrastructure/adapters/hero-api.adapter.ts src/app/features/heroes/domain/models/hero.model.ts
+git commit -m "feat: validación y sanitización de datos de la API
+
+- Validadores y type guards para modelos Hero
+- Sanitización de respuestas de la API
+- Validación de estructura de datos
+- Manejo robusto de datos faltantes o malformados
+- Modelo Hero actualizado con campos nullable"
+```
+
 ## 🚀 Comandos Rápidos (Todos los Commits)
 
 Si prefieres hacer todos los commits de una vez, aquí están en orden:
@@ -192,6 +226,18 @@ git commit -m "docs: documentación completa del proyecto"
 # 12. Configuración final
 git add public/assets/ package.json
 git commit -m "chore: configuración final y mejoras de package.json"
+
+# 13. HTTP Interceptor
+git add src/app/core/interceptors/
+git commit -m "feat: HTTP interceptor para manejo global de errores"
+
+# 14. Skeleton Loaders
+git add src/app/shared/atoms/hero-card-skeleton/ src/app/shared/molecules/hero-detail-skeleton/
+git commit -m "feat: skeleton loaders para mejor experiencia de usuario"
+
+# 15. Validación de datos
+git add src/app/features/heroes/domain/validators/ src/app/features/heroes/infrastructure/adapters/hero-api.adapter.ts src/app/features/heroes/domain/models/hero.model.ts
+git commit -m "feat: validación y sanitización de datos de la API"
 ```
 
 ## 📋 Convenciones de Commits Utilizadas

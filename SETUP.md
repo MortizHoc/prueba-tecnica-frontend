@@ -1,7 +1,8 @@
 # 🚀 Guía de Instalación y Configuración
 
 **Autor:** Maikol Ortiz - CC 1007193445  
-**Fecha:** 2025-12-03
+**Fecha:** 2025-12-03  
+**Última actualización:** 2025-12-04
 
 ## 📋 Prerrequisitos
 

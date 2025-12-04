@@ -48,6 +48,10 @@ La arquitectura hexagonal separa la lógica de negocio de los detalles técnicos
 **Presentation (Presentación)**
 - Componentes UI organizados por Atomic Design
 
+**Core (Núcleo)**
+- `interceptors/`: Interceptores HTTP globales (httpErrorInterceptor)
+- `validators/`: Validadores y type guards para datos de dominio
+
 ### 2. Atomic Design
 
 Organización de componentes UI en una jerarquía clara y reutilizable:
@@ -99,8 +103,10 @@ src/app/
 │       ├── domain/                     # Capa de Dominio
 │       │   ├── models/                 # Modelos de dominio
 │       │   │   └── hero.model.ts      # Interfaces: Hero, PowerStats, etc.
-│       │   └── ports/                  # Puertos (interfaces)
-│       │       └── hero.repository.port.ts  # Contrato del repositorio
+│       │   ├── ports/                  # Puertos (interfaces)
+│       │   │   └── hero.repository.port.ts  # Contrato del repositorio
+│       │   └── validators/             # Validadores y type guards
+│       │       └── hero.validator.ts  # Validación de datos Hero
 │       │
 │       ├── application/                # Capa de Aplicación
 │       │   └── services/               # Servicios de aplicación
@@ -120,13 +126,27 @@ src/app/
 │
 ├── shared/                              # Componentes compartidos
 │   ├── atoms/                          # Átomos reutilizables
-│   │   └── hero-card/                  # Tarjeta de superhéroe
+│   │   ├── hero-card/                  # Tarjeta de superhéroe
+│   │   └── hero-card-skeleton/         # Skeleton de tarjeta
 │   ├── molecules/                      # Moléculas reutilizables
 │   │   ├── pagination/                 # Componente de paginación
 │   │   ├── loading-spinner/           # Spinner de carga
-│   │   └── error-message/              # Mensaje de error
+│   │   ├── error-message/              # Mensaje de error
+│   │   └── hero-detail-skeleton/       # Skeleton de detalle
 │   ├── organisms/                      # Organismos reutilizables (futuro)
 │   └── utils/                          # Utilidades compartidas
+│
+├── core/                                # Núcleo de la aplicación
+│   └── interceptors/                    # Interceptores HTTP
+│       └── http-error.interceptor.ts   # Interceptor de errores
+│
+├── features/                            # Features organizadas por dominio
+│   └── heroes/
+│       ├── domain/
+│       │   ├── models/                 # Modelos de dominio
+│       │   ├── ports/                  # Puertos (interfaces)
+│       │   └── validators/             # Validadores y type guards
+│       │       └── hero.validator.ts   # Validación de datos Hero
 │
 ├── app.config.ts                        # Configuración de la aplicación
 ├── app.routes.ts                        # Configuración de rutas
