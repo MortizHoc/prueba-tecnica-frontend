@@ -40,7 +40,7 @@ import { ErrorMessageComponent } from '../../../../../shared/molecules/error-mes
 export class HeroListComponent implements OnInit {
   // Estado de la aplicación usando signals
   private readonly heroesData = signal<HeroesPaginatedResponse | null>(null);
-  private readonly loading = signal<boolean>(false);
+  private readonly loading = signal<boolean>(true); // Inicializado en true para mostrar skeletons en primera carga
   private readonly error = signal<string | null>(null);
   readonly currentPage = signal<number>(1);
   readonly pageSize = signal<number>(10);

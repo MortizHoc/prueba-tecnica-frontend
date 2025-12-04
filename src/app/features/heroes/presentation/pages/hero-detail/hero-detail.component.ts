@@ -48,7 +48,7 @@ export class HeroDetailComponent implements OnInit {
 
   // Estado de la aplicación usando signals
   private readonly heroData = signal<Hero | null>(null);
-  private readonly loading = signal<boolean>(false);
+  private readonly loading = signal<boolean>(true); // Inicializado en true para mostrar skeleton en primera carga
   private readonly error = signal<string | null>(null);
 
   // Computed values
